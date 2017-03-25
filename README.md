@@ -8,7 +8,7 @@ Load Script
 Default Conversion Event Methods
 ------------
 *  ntv.conversion.view_content()
-  *  Used to fire conversion event: 0
+* *  Used to fire conversion event: 0
 *  ntv.conversion.search()
   *  Used to fire conversion event: 1
 *  ntv.conversion.add_to_cart()
