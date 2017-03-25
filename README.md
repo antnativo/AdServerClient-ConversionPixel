@@ -35,7 +35,7 @@ Override Default Conversion Event Methods
 Custom Conversion Event Method
 ------------
 *  ntv.conversion.custom_event()
-*  *  Used to fire conversion event: 9 - 10
+*  *  Used to fire conversion event: 1-12
 *  *  *  A conversion event number must be assigned as an argument to the custom_event()
 *  *  *  to fire the pixel.
 

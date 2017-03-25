@@ -22,7 +22,7 @@
         , purchase: function (newPixel) { firePixel(overridePixel(6, newPixel)); }                  // fire 6
         , lead: function (newPixel) { firePixel(overridePixel(7, newPixel)); }                      // fire 7
         , complete_registration: function (newPixel) { firePixel(overridePixel(8, newPixel)); }     // fire 8
-        , custom_event: function (newPixel) { if (validCustomEvent(newPixel)) firePixel(newPixel); else dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel."); } // fires between 9-20
+        , custom_event: function (newPixel) { if (!isNaN(newPixel) && validCustomEvent(newPixel+8)) firePixel(newPixel+8); else dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel."); } // fires between 9-20
       }
     else
       dispatchEvent("missingid", "There is a missing vendor id attribute in script tag. Use data-vendor-id=<your vendor id>")
