@@ -13,7 +13,7 @@
     img.onerror = function (e) { dispatchEvent("failed", img.src); }
     if (vendorId && !isNaN(vendorId))
       ntv.conversion = {
-        view_content: function (newPixel) { firePixel(overridePixel(0, newPixel)); }               // fire 0
+        view_content: function (newPixel) { firePixel(overridePixel(0, newPixel)); }                // fire 0
         , search: function (newPixel) { firePixel(overridePixel(1, newPixel)); }                    // fire 1
         , add_to_cart: function (newPixel) { firePixel(overridePixel(2, newPixel)); }               // fire 2
         , add_to_wish_list: function (newPixel) { firePixel(overridePixel(3, newPixel)); }          // fire 3
