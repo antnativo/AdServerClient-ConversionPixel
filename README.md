@@ -39,7 +39,7 @@ Custom Conversion Event Method
 *  *  *  A conversion event number must be assigned as an argument to the custom_event()
 *  *  *  to fire the pixel.
 
-Listening to Error Events
+Listening to Events
 ------------
 *  You can listen to conversion pixel events on ntv.events
 *  *  Example:
