@@ -43,7 +43,15 @@ Listening to Events
 ------------
 *  You can listen to conversion pixel events on ntv.events
 *  *  Example:
-*  *  *  ntv.events.addEventListener("missingid",function(e){ console.log("Message: ", e.message) },false)
+*  *  *  ntv.events.addEventListener("missingid",function(e){ console.log("Message: ", e.detail.message) },false)
+
+Events
+------------
+*  missingid - fires when a vendor id is missing in script tag
+*  error - fires on any general error
+*  converted - fires when a pixel is fired successfully and returns the URL of the pixel
+*  failed - fires when a pixel is fired unsuccessfully and returns the URL of the pixel
+*  invalidpixel - fired when the event id passed is invalid
 
 Documened by
 ------------
