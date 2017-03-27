@@ -6,7 +6,7 @@
     var vendorConversionInclusion = document.getElementById("ntvConversionPixel");
     vendorId = vendorConversionInclusion.dataset.vendorid,
       img = new Image(),
-      firePixel = function (pixel) { if (!isNaN(pixel)) img.src = "http://jadserve.postrelease.com/conversion?ntv_conv_event=" + pixel + "&ntv_pixel_id=" + vendorId; },
+      firePixel = function (pixel) { if (!isNaN(pixel)) img.src = "http://jadserve.postrelease.com/conversion?ntv_conv_event=" + pixel + "&ord=" + new Date().valueOf() + "&ntv_pixel_id=" + vendorId; },
       overridePixel = function (oldPixel, newPixel) { if (typeof newPixel != "undefined" && isNaN(newPixel)) dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel."); else return (typeof newPixel != "undefined" && !isNaN(newPixel)) ? encodeURIComponent(oldPixel + "#" + newPixel) : oldPixel; },
       validCustomEvent = function (newPixel) { return newPixel > 8 && newPixel < 21 };
     img.onload = function (e) { dispatchEvent("converted", img.src); }
