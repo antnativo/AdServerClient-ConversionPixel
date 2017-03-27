@@ -3,7 +3,7 @@ AdServer Conversion Pixel
 
 Load Script
 ------------
-*  <script src="<url to the conversion pixel script>" data-vendor-id=<vendor or advertiser id> ></script>
+*  <script id="ntvConversionPixel"  src="<url to the conversion pixel script>" data-vendor-id=<vendor or advertiser id> ></script>
 
 Default Conversion Event Methods
 ------------
