@@ -5,6 +5,8 @@ Load Script
 ------------
 *  <script id="ntvConversionPixel"  src="<url to the conversion pixel script>" data-vendor-id=<vendor or advertiser id> ></script>
 
+* * Make sure to add id="ntvConversionPixel" to script tag
+
 Default Conversion Event Methods
 ------------
 *  ntv.conversion.view_content()
