@@ -5,11 +5,13 @@
   try {
     var vendorConversionInclusion = document.getElementById("ntvConversionPixel");
     vendorId = vendorConversionInclusion.dataset.vendorId,
-      img = new Image(),
       firePixel = function (pixel) {
-      if (/^([0-9]{0,2}$|(^[0-9]{0,2}[\%]{0,1})([0-9]{3,4}$))/.test(pixel))
+      if (/^([0-9]{0,2}$|(^[0-9]{0,2}[\%]{0,1})([0-9]{3,4}$))/.test(pixel)){
+        var img = new Image();  
         img.src = "http://jadserve.postrelease.com/conversion?ntv_conv_event=" + pixel + "&ord=" + new Date().valueOf() + "&ntv_pixel_id=" + vendorId;
-      else
+        img.onload = function (e) { dispatchEvent("converted", img.src); }
+        img.onerror = function (e) { dispatchEvent("failed", img.src); }
+      }else
         dispatchEvent("invalidpixel", pixel + " is an invalid tracking pixel.");  
       },
       overridePixel = function (oldPixel, newPixel) {
@@ -19,9 +21,8 @@
           return (typeof newPixel != "undefined" && !isNaN(newPixel)) ? encodeURIComponent(oldPixel + "#" + newPixel) : oldPixel;
       },
       validCustomEvent = function (newPixel) { return newPixel > 8 && newPixel < 21 };
-    img.onload = function (e) { dispatchEvent("converted", img.src); }
-    img.onerror = function (e) { dispatchEvent("failed", img.src); }
-    if (vendorId && (/^[a-zA-Z0-9]+$/gi.test(vendorId)))
+    console.log(vendorId)
+    if (vendorId)
       ntv.conversion = {
         view_content: function (newPixel) { firePixel(overridePixel(0, newPixel)); }                // fire 0
         , search: function (newPixel) { firePixel(overridePixel(1, newPixel)); }                    // fire 1
