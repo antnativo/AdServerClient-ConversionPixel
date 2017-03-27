@@ -4,7 +4,7 @@
   function dispatchEvent(type, msg) { var event = new CustomEvent(type, { detail: { "message": msg } }); ntv.events.dispatchEvent(event); }
   try {
     var vendorConversionInclusion = document.getElementById("ntvConversionPixel");
-    vendorId = vendorConversionInclusion.dataset.vendorid,
+    vendorId = vendorConversionInclusion.dataset.vendorId,
       img = new Image(),
       firePixel = function (pixel) { if (!isNaN(pixel)) img.src = "http://jadserve.postrelease.com/conversion?ntv_conv_event=" + pixel + "&ord=" + new Date().valueOf() + "&ntv_pixel_id=" + vendorId; },
       overridePixel = function (oldPixel, newPixel) { if (typeof newPixel != "undefined" && isNaN(newPixel)) dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel."); else return (typeof newPixel != "undefined" && !isNaN(newPixel)) ? encodeURIComponent(oldPixel + "#" + newPixel) : oldPixel; },
