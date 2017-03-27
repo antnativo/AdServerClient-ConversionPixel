@@ -21,7 +21,7 @@
       validCustomEvent = function (newPixel) { return newPixel > 8 && newPixel < 21 };
     img.onload = function (e) { dispatchEvent("converted", img.src); }
     img.onerror = function (e) { dispatchEvent("failed", img.src); }
-    if (vendorId && (/^[a-zA-Z]+$/gi.test(vendorId)))
+    if (vendorId && (/^[a-zA-Z0-9]+$/gi.test(vendorId)))
       ntv.conversion = {
         view_content: function (newPixel) { firePixel(overridePixel(0, newPixel)); }                // fire 0
         , search: function (newPixel) { firePixel(overridePixel(1, newPixel)); }                    // fire 1
