@@ -6,12 +6,22 @@
     var vendorConversionInclusion = document.getElementById("ntvConversionPixel");
     vendorId = vendorConversionInclusion.dataset.vendorId,
       img = new Image(),
-      firePixel = function (pixel) { if (!isNaN(pixel)) img.src = "http://jadserve.postrelease.com/conversion?ntv_conv_event=" + pixel + "&ord=" + new Date().valueOf() + "&ntv_pixel_id=" + vendorId; },
-      overridePixel = function (oldPixel, newPixel) { if (typeof newPixel != "undefined" && isNaN(newPixel)) dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel."); else return (typeof newPixel != "undefined" && !isNaN(newPixel)) ? encodeURIComponent(oldPixel + "#" + newPixel) : oldPixel; },
+      firePixel = function (pixel) {
+      if (/^([0-9]{0,2}$|(^[0-9]{0,2}[\%]{0,1})([0-9]{3,4}$))/.test(pixel))
+        img.src = "http://jadserve.postrelease.com/conversion?ntv_conv_event=" + pixel + "&ord=" + new Date().valueOf() + "&ntv_pixel_id=" + vendorId;
+      else
+        dispatchEvent("invalidpixel", pixel + " is an invalid tracking pixel.");  
+      },
+      overridePixel = function (oldPixel, newPixel) {
+        if (typeof newPixel != "undefined" && isNaN(newPixel))
+          dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel.");
+        else
+          return (typeof newPixel != "undefined" && !isNaN(newPixel)) ? encodeURIComponent(oldPixel + "#" + newPixel) : oldPixel;
+      },
       validCustomEvent = function (newPixel) { return newPixel > 8 && newPixel < 21 };
     img.onload = function (e) { dispatchEvent("converted", img.src); }
     img.onerror = function (e) { dispatchEvent("failed", img.src); }
-    if (vendorId && !isNaN(vendorId))
+    if (vendorId && (/^[a-zA-Z]+$/gi.test(vendorId)))
       ntv.conversion = {
         view_content: function (newPixel) { firePixel(overridePixel(0, newPixel)); }                // fire 0
         , search: function (newPixel) { firePixel(overridePixel(1, newPixel)); }                    // fire 1
@@ -24,8 +34,10 @@
         , complete_registration: function (newPixel) { firePixel(overridePixel(8, newPixel)); }     // fire 8
         , custom_event: function (newPixel) { if (!isNaN(newPixel) && validCustomEvent(newPixel+8)) firePixel(newPixel+8); else dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel."); } // fires between 9-20
       }
-    else
+    else{
       dispatchEvent("missingid", "There is a missing vendor id attribute in script tag. Use data-vendor-id=<your vendor id>")
+      console.log("There is a missing vendor id attribute in script tag. Use data-vendor-id=<your vendor id>")
+    }
   } catch (e) {
     dispatchEvent("error", e.message)
   }
