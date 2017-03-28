@@ -33,8 +33,9 @@
         , purchase: function (newPixel) { firePixel(overridePixel(6, newPixel)); }                  // fire 6
         , lead: function (newPixel) { firePixel(overridePixel(7, newPixel)); }                      // fire 7
         , complete_registration: function (newPixel) { firePixel(overridePixel(8, newPixel)); }     // fire 8
-        , custom_event: function (oldPixel,newPixel) {
-          if (!isNaN(oldPixel) && validCustomEvent(oldPixel + 8 && typeof newPixel == "undefined")
+        , custom_event: function (oldPixel, newPixel) {
+          console.log(Boolean(!isNaN(oldPixel) && validCustomEvent(oldPixel + 8) && typeof newPixel == "undefined"),oldPixel,newPixel)
+          if ((!isNaN(oldPixel) && validCustomEvent(oldPixel + 8) && typeof newPixel == "undefined")
             || (!isNaN(oldPixel) && validCustomEvent(oldPixel + 8)  && typeof newPixel != "undefined" && !isNaN(newPixel) && validCustomEvent(newPixel + 8)))
             firePixel(overridePixel(oldPixel, newPixel)); 
           else dispatchEvent("invalidpixel", newPixel + " is an invalid tracking pixel.");
