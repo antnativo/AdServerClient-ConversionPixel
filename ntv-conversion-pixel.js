@@ -21,7 +21,6 @@
           return (typeof newPixel != "undefined" && !isNaN(newPixel)) ? encodeURIComponent(oldPixel + "#" + newPixel) : oldPixel;
       },
       validCustomEvent = function (newPixel) { return newPixel > 8 && newPixel < 21 };
-    console.log(vendorId)
     if (vendorId)
       ntv.conversion = {
         view_content: function (newPixel) { firePixel(overridePixel(0, newPixel)); }                // fire 0
@@ -34,7 +33,6 @@
         , lead: function (newPixel) { firePixel(overridePixel(7, newPixel)); }                      // fire 7
         , complete_registration: function (newPixel) { firePixel(overridePixel(8, newPixel)); }     // fire 8
         , custom_event: function (oldPixel, newPixel) {
-          console.log(Boolean(!isNaN(oldPixel) && validCustomEvent(oldPixel + 8) && typeof newPixel == "undefined"),oldPixel,newPixel)
           if ((!isNaN(oldPixel) && validCustomEvent(oldPixel + 8) && typeof newPixel == "undefined")
             || (!isNaN(oldPixel) && validCustomEvent(oldPixel + 8)  && typeof newPixel != "undefined" && !isNaN(newPixel) && validCustomEvent(newPixel + 8)))
             firePixel(overridePixel(oldPixel, newPixel)); 
