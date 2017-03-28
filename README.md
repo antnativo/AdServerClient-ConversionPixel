@@ -40,6 +40,7 @@ Custom Conversion Event Method
 *  *  Used to fire conversion event: 1-12
 *  *  *  A conversion event number must be assigned as an argument to the custom_event()
 *  *  *  to fire the pixel.
+* *  To Override a custom event, provide a second argument.
 
 Listening to Events
 ------------
